@@ -1,0 +1,11 @@
+cat <<EOT > ~/llm-stack/vm_llm_setup/.gitignore
+*.gguf
+*.bin
+*.ckpt
+*.pt
+*.pdf
+output/
+__pycache__/
+*.pyc
+*.log
+EOT
