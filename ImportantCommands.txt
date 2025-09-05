@@ -1,0 +1,44 @@
+#Start LLM
+
+python -m uvicorn server:app --host 0.0.0.0 --port 8000 --reload --env-file .env
+
+
+./llama-server.sh start
+./llm.sh restart
+./llm.sh status
+
+
+./chatui.sh up
+./chatui.sh status
+./chatui.sh down
+
+
+./chatui.sh down
+./chatui.sh up
+./chatui.sh status
+
+cd ~/projects/llm-mistral-7b-legacy
+source venv/bin/activate
+set -a; source .env; set +a
+./llm.sh stop || true
+./llm.sh start
+./llm.sh logs
+
+
+
+Start WhatsApp Gateway
+
+cd ~/projects/llm-mistral-7b-legacy
+source venv/bin/activate
+export LLM_API_URL="http://127.0.0.1:8000/chat"
+export MODEL_TOKENS=24
+uvicorn whatsapp_llm_gateway:app --host 0.0.0.0 --port 8011 --reload --log-level info
+
+WhatsApp Gateway-Admin
+
+./wa_gateway.sh start
+./wa_gateway.sh status
+./wa_gateway.sh health
+./wa_gateway.sh logs    # follow the output (Ctrl+C to exit)
+./wa_gateway.sh restart
+./wa_gateway.sh stop

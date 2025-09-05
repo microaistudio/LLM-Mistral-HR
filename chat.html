@@ -9,6 +9,8 @@ Updated: Fixed character encoding issues and rebranded for Agentriyx
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- prevent any caching so the JS updates always run -->
+  <meta http-equiv="Cache-Control" content="no-store" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Agentriyx AI Assistant</title>
   <style>
@@ -19,191 +21,31 @@ Updated: Fixed character encoding issues and rebranded for Agentriyx
       padding: 20px;
       min-height: 100vh;
     }
-    
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      overflow: hidden;
-    }
-    
-    .header {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
-    
-    .logo-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-    
-    .logo {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #60a5fa, #34d399);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 18px;
-      color: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    
-    h1 { 
-      margin: 0;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-    
-    .subtitle {
-      margin: 5px 0 0 0; 
-      opacity: 0.9;
-      font-size: 16px;
-      font-weight: 300;
-    }
-    
-    #chat-box { 
-      background: #f8fafc; 
-      padding: 20px; 
-      height: 500px; 
-      overflow-y: auto; 
-      border-bottom: 1px solid #e2e8f0;
-    }
-    
-    .message {
-      margin-bottom: 15px;
-      animation: fadeIn 0.3s ease-in;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .user { 
-      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-      color: white;
-      padding: 12px 16px; 
-      border-radius: 18px 18px 4px 18px;
-      margin-left: 20%;
-      box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
-    }
-    
-    .bot { 
-      background: white;
-      border: 1px solid #e2e8f0;
-      color: #1f2937;
-      padding: 12px 16px; 
-      border-radius: 18px 18px 18px 4px;
-      margin-right: 20%;
-      white-space: pre-wrap;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    .loading {
-      background: white;
-      border: 1px solid #e2e8f0;
-      padding: 12px 16px;
-      border-radius: 18px 18px 18px 4px;
-      margin-right: 20%;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    .typing {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-    
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #6b7280;
-      animation: typing 1.4s infinite ease-in-out;
-    }
-    
-    .dot:nth-child(1) { animation-delay: -0.32s; }
-    .dot:nth-child(2) { animation-delay: -0.16s; }
-    
-    @keyframes typing {
-      0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
-      40% { transform: scale(1); opacity: 1; }
-    }
-    
-    .input-container {
-      padding: 20px;
-      background: white;
-    }
-    
-    #input-form { 
-      display: flex; 
-      gap: 10px;
-      align-items: center;
-    }
-    
-    input[type="text"] { 
-      flex-grow: 1; 
-      padding: 12px 16px;
-      border: 2px solid #e2e8f0;
-      border-radius: 25px;
-      font-size: 16px;
-      outline: none;
-      transition: border-color 0.3s ease;
-    }
-    
-    input[type="text"]:focus {
-      border-color: #4f46e5;
-    }
-    
-    input[type="submit"] { 
-      padding: 12px 24px;
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: white;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    
-    input[type="submit"]:hover {
-      transform: translateY(-2px);
-    }
-    
-    input[type="submit"]:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .error {
-      background: #fee2e2;
-      border: 1px solid #fecaca;
-      color: #dc2626;
-      padding: 12px 16px;
-      border-radius: 18px 18px 18px 4px;
-      margin-right: 20%;
-    }
-    
-    .status {
-      text-align: center;
-      color: #6b7280;
-      font-size: 14px;
-      margin-top: 10px;
-    }
+    .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; }
+    .header { background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; padding: 20px; text-align: center; position: relative; }
+    .logo-container { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; }
+    .logo { width: 40px; height: 40px; background: linear-gradient(135deg, #60a5fa, #34d399); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    h1 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+    .subtitle { margin: 5px 0 0 0; opacity: 0.9; font-size: 16px; font-weight: 300; }
+    #chat-box { background: #f8fafc; padding: 20px; height: 500px; overflow-y: auto; border-bottom: 1px solid #e2e8f0; }
+    .message { margin-bottom: 15px; animation: fadeIn 0.3s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+    .user { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 12px 16px; border-radius: 18px 18px 4px 18px; margin-left: 20%; box-shadow: 0 2px 10px rgba(59,130,246,0.3); }
+    .bot { background: white; border: 1px solid #e2e8f0; color: #1f2937; padding: 12px 16px; border-radius: 18px 18px 18px 4px; margin-right: 20%; white-space: pre-wrap; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .loading { background: white; border: 1px solid #e2e8f0; padding: 12px 16px; border-radius: 18px 18px 18px 4px; margin-right: 20%; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .typing { display: inline-flex; align-items: center; gap: 4px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #6b7280; animation: typing 1.4s infinite ease-in-out; }
+    .dot:nth-child(1) { animation-delay: -0.32s; } .dot:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes typing { 0%,80%,100% { transform: scale(0); opacity:.5; } 40% { transform: scale(1); opacity:1; } }
+    .input-container { padding: 20px; background: white; }
+    #input-form { display: flex; gap: 10px; align-items: center; }
+    input[type="text"] { flex-grow: 1; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 25px; font-size: 16px; outline: none; transition: border-color 0.3s; }
+    input[type="text"]:focus { border-color: #4f46e5; }
+    input[type="submit"] { padding: 12px 24px; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; border: none; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s; }
+    input[type="submit"]:hover { transform: translateY(-2px); }
+    input[type="submit"]:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .error { background: #fee2e2; border: 1px solid #fecaca; color: #dc2626; padding: 12px 16px; border-radius: 18px 18px 18px 4px; margin-right: 20%; }
+    .status { text-align: center; color: #6b7280; font-size: 14px; margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -215,13 +57,13 @@ Updated: Fixed character encoding issues and rebranded for Agentriyx
       </div>
       <p class="subtitle">🤖 Your AI Assistant - Ask me anything!</p>
     </div>
-    
+
     <div id="chat-box">
       <div class="message bot">
         <strong>AI Assistant:</strong> Hello! I'm your Agentriyx AI assistant. I'm ready to help you with any questions or tasks. What would you like to know?
       </div>
     </div>
-    
+
     <div class="input-container">
       <form id="input-form">
         <input type="text" id="user-input" placeholder="Type your question here..." required />
@@ -241,14 +83,13 @@ Updated: Fixed character encoding issues and rebranded for Agentriyx
     let isProcessing = false;
 
     function sanitizeResponse(text) {
-      // More precise cleaning to target specific encoding artifacts
       return text
-        .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Remove control characters
-        .replace(/\[.*?\]/g, '') // Remove content within square brackets
-        .replace(/[ОО][КK]/g, '') // Remove OK in various encodings
-        .replace(/^K\[K\s*/g, '') // Remove specific "K[K" pattern at start
-        .replace(/K\[K/g, '') // Remove "K[K" anywhere in text
-        .replace(/^\W*/, '') // Remove any remaining leading non-word characters
+        .replace(/[\u0000-\u001F\u007F-\u009F]/g, '')
+        .replace(/\[.*?\]/g, '')
+        .replace(/[ОО][КK]/g, '')
+        .replace(/^K\[K\s*/g, '')
+        .replace(/K\[K/g, '')
+        .replace(/^\W*/, '')
         .trim();
     }
 
@@ -265,29 +106,25 @@ Updated: Fixed character encoding issues and rebranded for Agentriyx
       loadingDiv.className = 'message loading';
       loadingDiv.id = 'loading-indicator';
       loadingDiv.innerHTML = `
-        <strong>AI Assistant:</strong> 
+        <strong>AI Assistant:</strong>
         <span class="typing">
           <span class="dot"></span>
           <span class="dot"></span>
           <span class="dot"></span>
-        </span>
-      `;
+        </span>`;
       chatBox.appendChild(loadingDiv);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
     function hideLoading() {
       const loading = document.getElementById('loading-indicator');
-      if (loading) {
-        loading.remove();
-      }
+      if (loading) loading.remove();
     }
 
     function setProcessing(processing) {
       isProcessing = processing;
       sendBtn.disabled = processing;
       input.disabled = processing;
-      
       if (processing) {
         sendBtn.value = "Thinking...";
         status.textContent = "Processing your request...";
@@ -299,50 +136,47 @@ Updated: Fixed character encoding issues and rebranded for Agentriyx
 
     form.onsubmit = async (e) => {
       e.preventDefault();
-      
       if (isProcessing) return;
-      
+
       const userMsg = input.value.trim();
       if (!userMsg) return;
 
-      // Add user message
       addMessage(`<strong>You:</strong> ${userMsg}`, true);
       input.value = "";
-      
+
       setProcessing(true);
       showLoading();
 
       try {
         const startTime = Date.now();
-        const res = await fetch(`/chat?q=${encodeURIComponent(userMsg)}`);
+        const url = `/chat?q=${encodeURIComponent(userMsg)}`;
+        console.log("[chat.html] GET", url);                 // <-- debug line
+        const res = await fetch(url, { method: 'GET', cache: 'no-store' }); // <-- no-store
         const data = await res.json();
-        
+
         hideLoading();
-        
-        if (res.ok && data.response) {
+
+        // accept either {"reply": "..."} or {"response": "..."} or {"text": "..."}
+        const reply = data.reply || data.response || data.text || data.message;
+
+        if (res.ok && reply) {
           const responseTime = ((Date.now() - startTime) / 1000).toFixed(1);
-          // Clean the response to remove problematic characters
-          const cleanResponse = sanitizeResponse(data.response);
-          addMessage(`<strong>AI Assistant:</strong> ${cleanResponse}`);
+          addMessage(`<strong>AI Assistant:</strong> ${sanitizeResponse(String(reply))}`);
           status.textContent = `Response time: ${responseTime}s`;
-          setTimeout(() => status.textContent = "", 3000);
+          setTimeout(() => (status.textContent = ""), 3000);
         } else {
-          addMessage(`<strong>Error:</strong> ${data.response || 'Failed to get response'}`, false, true);
+          addMessage(`<strong>Error:</strong> ${data.response || data.reply || data.text || data.message || 'Failed to get response'}`, false, true);
         }
-        
       } catch (err) {
         hideLoading();
-        console.error('Request failed:', err);
+        console.error("[chat.html] request failed:", err);
         addMessage(`<strong>Error:</strong> Connection failed. Please check if the server is running.`, false, true);
       } finally {
         setProcessing(false);
       }
     };
 
-    // Auto-focus input
     input.focus();
-    
-    // Enter key support
     input.addEventListener('keypress', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
